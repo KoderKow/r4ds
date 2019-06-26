@@ -1,0 +1,59 @@
+---
+title: "r4ds"
+author: "Kyle Harris"
+date: "6/25/2019"
+output: html_document
+    
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE
+  )
+library(tidyverse)
+```
+
+# Chapter 3
+
+## 3.2.4 Exercises
+
+1. Run ggplot(data = mpg). What do you see?
+
+```{r}
+ggplot(data = mpg)
+```
+
+A blank canvas because we did not specify the aesthetics and the geoms.
+
+2. How many rows are in mpg? How many columns?
+
+```{r}
+dim(mpg)
+```
+
+234 rows, 11 columns.
+
+3. What does the drv variable describe? Read the help for ?mpg to find out.
+
+- f = front-wheel drive
+- r = rear wheel drive
+- 4 = 4wd
+
+4. Make a scatterplot of hwy vs cyl.
+
+```{r}
+mpg %>% 
+  ggplot(aes(x = cyl, y = hwy)) +
+    geom_point()
+```
+
+5. What happens if you make a scatterplot of class vs drv? Why is the plot not useful?
+
+```{r}
+mpg %>% 
+  ggplot(aes(x = drv, y = class)) +
+    geom_point()
+```
+
+`drv` and `class` are both data type *character*. In a scatter plot each point will represent which are pairs. This is not useful apart from showing pairs because it fails to show counts of pairs and we cannot see and trends nor signals.
